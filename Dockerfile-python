@@ -1,0 +1,22 @@
+# Estágio 2: Configurando o ambiente Python e Jupyter Notebook
+FROM python:3.9
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+
+COPY Spark_Run.ipynb Spark_Run.ipynb
+
+COPY src /app/src 
+
+
+RUN pip install -r requirements.txt
+
+RUN pip install --upgrade pip ipython ipykernel
+
+RUN python -m ipykernel install --user --name=python_docker
+
+
+EXPOSE 8888
+
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]

@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  sqlserver:
+    build:
+      context: .
+      dockerfile: Dockerfile-sqlserver
+    ports:
+      - "1434:1433"
+
+  python-jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile-python
+    ports:
+      - "8888:8888"
+
+#volumes:
+#  sqlserver_data:
+#  sqlserver_logs:
